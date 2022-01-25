@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 
 class TodoRepositoryImpl(
     private val dao: TodoDao
-): TodoRepository {
+) : TodoRepository {
 
     override suspend fun insertTodo(todo: Todo) {
         dao.insertTodo(todo)

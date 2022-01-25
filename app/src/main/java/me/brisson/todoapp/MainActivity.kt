@@ -21,8 +21,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             TodoAppTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController,
-                startDestination = Routes.TODO_LIST
+                NavHost(
+                    navController = navController,
+                    startDestination = Routes.TODO_LIST
                 ) {
                     composable(Routes.TODO_LIST) {
                         TodoListScreen(
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = Routes.ADD_EDIT_TODO + "?todoId={todoId}",
                         arguments = listOf(
-                            navArgument(name = "todoId"){
+                            navArgument(name = "todoId") {
                                 type = NavType.IntType
                                 defaultValue = -1
                             }

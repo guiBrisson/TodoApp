@@ -19,7 +19,7 @@ import javax.inject.Inject
 class AddEditTodoViewModel @Inject constructor(
     private val repository: TodoRepository,
     savedStateHandle: SavedStateHandle
-): ViewModel() {
+) : ViewModel() {
 
     var todo by mutableStateOf<Todo?>(null)
         private set
@@ -47,7 +47,7 @@ class AddEditTodoViewModel @Inject constructor(
     }
 
     fun onEvent(event: AddEditTodoEvent) {
-        when(event) {
+        when (event) {
             is AddEditTodoEvent.OnTitleChange -> {
                 title = event.title
             }
@@ -57,9 +57,11 @@ class AddEditTodoViewModel @Inject constructor(
             is AddEditTodoEvent.OnSaveTodoClick -> {
                 viewModelScope.launch {
                     if (title.isBlank()) {
-                        sendUiEvent(UiEvent.ShowSnackBar(
-                            message = "The title can't be empty"
-                        ))
+                        sendUiEvent(
+                            UiEvent.ShowSnackBar(
+                                message = "The title can't be empty"
+                            )
+                        )
                         return@launch
                     }
                     repository.insertTodo(
